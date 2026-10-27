@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, Suspense, lazy } from 'react';
 import {
   BookOpen,
   Volume2,
@@ -26,7 +26,10 @@ import {
 } from '../types/study';
 import { AUDIO_TRACKS, AudioTrackItem } from '../data/audioTracksData';
 import { segmentParagraphWithGlossary } from '../utils/studyEngine';
-import { PdfCanvasViewer } from './PdfCanvasViewer';
+
+const PdfCanvasViewer = lazy(() =>
+  import('./PdfCanvasViewer').then((m) => ({ default: m.PdfCanvasViewer }))
+);
 
 interface ReaderViewProps {
   sections: BookSection[];
@@ -761,12 +764,20 @@ export const ReaderView: React.FC<ReaderViewProps> = ({
               </div>
             </div>
 
-            <PdfCanvasViewer
-              pdfUrl={selectedPdf.path}
-              initialPage={selectedPdf.syncChapterPage ? currentSection.pageStart : 1}
-              title={isEs ? selectedPdf.labelEs : selectedPdf.labelEn}
-              uiLang={uiLang}
-            />
+            <Suspense
+              fallback={
+                <div className="py-16 text-center text-xs text-slate-500 dark:text-slate-400">
+                  {isEs ? 'Cargando visor de documentos PDF...' : 'Loading PDF document viewer...'}
+                </div>
+              }
+            >
+              <PdfCanvasViewer
+                pdfUrl={selectedPdf.path}
+                initialPage={selectedPdf.syncChapterPage ? currentSection.pageStart : 1}
+                title={isEs ? selectedPdf.labelEs : selectedPdf.labelEn}
+                uiLang={uiLang}
+              />
+            </Suspense>
           </div>
         ) : (
           <article className="bg-white dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 rounded-xl p-6 sm:p-10">
