@@ -1,7 +1,7 @@
 {
   "framework": "vite",
-  "installCommand": "npm install --legacy-peer-deps --include=dev",
-  "buildCommand": "npm run build",
+  "installCommand": "node -e 'const {execSync}=require(\"child_process\");for(const k of Object.keys(process.env)){if(k.toLowerCase().includes(\"cache_dir\")||k.toLowerCase().includes(\"cache-dir\"))delete process.env[k]}execSync(\"npm install --legacy-peer-deps --include=dev --no-audit --no-fund --loglevel=error\",{stdio:\"inherit\",env:process.env})'",
+  "buildCommand": "node scripts/build-audio.mjs && ./node_modules/.bin/vite build",
   "outputDirectory": "dist",
   "headers": [
     {
@@ -26,18 +26,18 @@
       ]
     },
     {
-      "source": "/assets/(.*)",
+      "source": "/audio/(.*)",
       "headers": [
         {
           "key": "Cache-Control",
-          "value": "public, max-age=31536000, immutable"
+          "value": "public, max-age=0, must-revalidate"
         }
       ]
     }
   ],
   "rewrites": [
     {
-      "source": "/((?!assets/|favicon.svg).*)",
+      "source": "/((?!assets/|audio/|favicon.svg).*)",
       "destination": "/index.html"
     }
   ]

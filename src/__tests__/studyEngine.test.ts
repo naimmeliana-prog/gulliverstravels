@@ -43,7 +43,7 @@ describe('Gulliver’s Travels B2 Study Engine & Dataset Integrity', () => {
     const sectionIds = new Set(sections.map((s) => s.id));
     for (const track of AUDIO_TRACKS) {
       expect(sectionIds.has(track.chapterId)).toBe(true);
-      expect(track.src).toMatch(/^\/assets\/aistudio\/Track_\d{2}_[a-f0-9]+\.mp3$/);
+      expect(track.src).toMatch(/^(\/audio\/Track_01_Introduction_EN\.mp3|\/assets\/aistudio\/Track_\d{2}_[a-f0-9]+\.mp3)$/);
     }
     for (const sec of sections) {
       const tracksForSec = AUDIO_TRACKS.filter((t) => t.chapterId === sec.id);

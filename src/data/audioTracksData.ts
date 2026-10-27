@@ -16,7 +16,7 @@ export const AUDIO_TRACKS: AudioTrackItem[] = [
     title: 'Track 01 — Introduction (Complete)',
     subLabel: 'Story Introduction & About Jonathan Swift',
     openingCue: '“Then something moved on my foot. It moved over my body and up to my face...”',
-    src: '/assets/aistudio/Track_01_1c68403d.mp3'
+    src: '/audio/Track_01_Introduction_EN.mp3'
   },
   {
     id: 'track-02',
