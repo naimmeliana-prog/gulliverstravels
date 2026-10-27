@@ -1,6 +1,6 @@
 {
   "framework": "vite",
-  "installCommand": "node -e 'const {execSync}=require(\"child_process\");for(const k of Object.keys(process.env)){if(k.toLowerCase().includes(\"cache_dir\")||k.toLowerCase().includes(\"cache-dir\"))delete process.env[k]}execSync(\"npm install --legacy-peer-deps --include=dev --no-audit --no-fund --loglevel=error\",{stdio:\"inherit\",env:process.env})'",
+  "installCommand": "node scripts/vercel-install.mjs",
   "buildCommand": "node scripts/build-audio.mjs && ./node_modules/.bin/vite build",
   "outputDirectory": "dist",
   "headers": [
