@@ -13,9 +13,9 @@ export const AUDIO_TRACKS: AudioTrackItem[] = [
     id: 'track-01',
     trackNumber: 1,
     chapterId: 'intro',
-    title: 'Track 01 — Audiobook Title & Credits',
-    subLabel: 'CD 1 · Opening Credits',
-    openingCue: 'Gulliver’s Travels by Jonathan Swift (Penguin Readers Edition)',
+    title: 'Track 01 — Introduction (Complete)',
+    subLabel: 'Story Introduction & About Jonathan Swift',
+    openingCue: '“Then something moved on my foot. It moved over my body and up to my face...”',
     src: '/assets/aistudio/Track_01_1c68403d.mp3'
   },
   {

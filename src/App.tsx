@@ -27,7 +27,7 @@ import { B2LabView } from './components/B2LabView';
 import { GlossaryView } from './components/GlossaryView';
 import { AnalyticsView } from './components/AnalyticsView';
 import { SyncSettingsView } from './components/SyncSettingsView';
-import { Bell, X } from 'lucide-react';
+import { Bell, X, Globe, Sun, Moon, RefreshCw } from 'lucide-react';
 
 type ActiveTab = 'reader' | 'b2-lab' | 'glossary' | 'analytics' | 'sync';
 
@@ -474,6 +474,76 @@ export default function App() {
           </button>
         ))}
       </nav>
+
+      {/* High-Visibility Quick Access Bar: Idioma UI, Modo Claro/Oscuro & Sincronizar Móvil/Escritorio */}
+      <div className="border-b border-slate-200 dark:border-slate-800 bg-slate-100/85 dark:bg-slate-900/95 px-4 sm:px-6 py-2.5 no-print">
+        <div className="max-w-[1360px] mx-auto flex flex-wrap items-center justify-between gap-3">
+          <div className="flex items-center gap-2 text-xs font-medium text-slate-600 dark:text-slate-300">
+            <span className="inline-block w-2 h-2 rounded-full bg-emerald-500" />
+            <span>
+              {isEs
+                ? 'Accesos Rápidos de Estudio (Textos y ejercicios en Inglés B2)'
+                : 'Quick Study Controls (Book texts & exercises in B2 English)'}
+            </span>
+          </div>
+
+          <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+            {/* 1. Idioma UI Switch */}
+            <button
+              type="button"
+              onClick={() =>
+                handleUpdatePreferences({
+                  uiLanguage: isEs ? 'en' : 'es'
+                })
+              }
+              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 border border-slate-300 dark:border-slate-700 hover:border-sky-500 dark:hover:border-sky-500 shadow-2xs transition-colors cursor-pointer"
+            >
+              <Globe className="w-3.5 h-3.5 text-sky-600 dark:text-sky-400 shrink-0" />
+              <span>
+                {isEs ? 'Idioma UI: Español (Cambiar a EN)' : 'UI Language: English (Switch to ES)'}
+              </span>
+            </button>
+
+            {/* 2. Light / Dark Mode Switch */}
+            <button
+              type="button"
+              onClick={() =>
+                handleUpdatePreferences({
+                  theme: studyState.preferences.theme === 'dark' ? 'light' : 'dark'
+                })
+              }
+              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 border border-slate-300 dark:border-slate-700 hover:border-sky-500 dark:hover:border-sky-500 shadow-2xs transition-colors cursor-pointer"
+            >
+              {studyState.preferences.theme === 'dark' ? (
+                <Sun className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+              ) : (
+                <Moon className="w-3.5 h-3.5 text-indigo-600 shrink-0" />
+              )}
+              <span>
+                {isEs
+                  ? `Cambiar a Modo ${studyState.preferences.theme === 'dark' ? 'Claro' : 'Oscuro'}`
+                  : `Switch to ${studyState.preferences.theme === 'dark' ? 'Light Paper' : 'Dark Night'} Mode`}
+              </span>
+            </button>
+
+            {/* 3. Mobile & Desktop Sync Button */}
+            <button
+              type="button"
+              onClick={() => setActiveTab('sync')}
+              className={`inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg text-xs font-semibold border transition-colors cursor-pointer ${
+                activeTab === 'sync'
+                  ? 'bg-sky-600 text-white border-sky-600'
+                  : 'bg-sky-50 dark:bg-sky-950/60 text-sky-800 dark:text-sky-300 border-sky-200 dark:border-sky-800 hover:bg-sky-100 dark:hover:bg-sky-900/60'
+              }`}
+            >
+              <RefreshCw className="w-3.5 h-3.5 shrink-0" />
+              <span>
+                {isEs ? 'Sincronizar Móvil y Escritorio' : 'Sync Mobile & Desktop'}
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
 
       {/* Daily Study Discipline Notification Banner */}
       {showReminderBanner && (
