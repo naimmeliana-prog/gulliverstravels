@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <!-- Full-bleed edge-to-edge nautical compass & open book emblem with transparent background -->
+  <path d="M32 0L39.5 20.5L64 24L45 38.5L51 64L32 49.5L13 64L19 38.5L0 24L24.5 20.5L32 0Z" fill="#0284C7" fill-opacity="0.18"/>
+  <path d="M2 12C14 12 24 16 32 22C40 16 50 12 62 12V56C50 56 40 60 32 64C24 60 14 56 2 56V12Z" stroke="#0284C7" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M32 22V64" stroke="#0284C7" stroke-width="4" stroke-linecap="round"/>
+  <path d="M32 0L37 16L32 22L27 16L32 0Z" fill="#0F172A"/>
+  <circle cx="32" cy="14" r="3.5" fill="#F59E0B"/>
+  <path d="M10 24H25M10 34H25M10 44H22M39 24H54M39 34H54M39 44H51" stroke="#0F172A" stroke-width="3.5" stroke-linecap="round"/>
+</svg>

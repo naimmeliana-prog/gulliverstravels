@@ -1,0 +1,6 @@
+{
+  "name": "Gulliver's Travels — B2 Interactive Study Edition",
+  "description": "Plataforma minimalista de lectura íntegra, glosario interactivo, gramática y vocabulario B2, analíticas avanzadas y sincronización multi-dispositivo para Gulliver's Travels.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
